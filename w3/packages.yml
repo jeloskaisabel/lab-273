@@ -1,0 +1,483 @@
+1. **Paquete 1 - Solicitud GET /style.css:**
+   - Método: GET
+   - URL solicitada: /style.css
+   - Encabezados de solicitud: [Lista de encabezados de solicitud]
+   - Cookies enviadas: [No se enviaron cookies]
+
+2. **Paquete 2 - Respuesta 404 Not Found para GET /style.css:**
+   - Código de estado: 404 Not Found
+   - Encabezados de respuesta: [Lista de encabezados de respuesta]
+   - Cookies recibidas: [No se recibieron cookies]
+
+3. **Paquete 3 - Solicitud GET /Estacion_GAW.mp4:**
+   - Método: GET
+   - URL solicitada: /Estacion_GAW.mp4
+   - Encabezados de solicitud: [Lista de encabezados de solicitud]
+   - Cookies enviadas: [No se enviaron cookies]
+
+4. **Paquete 4 - Solicitud GET /FisicaFCPN.mp4:**
+   - Método: GET
+   - URL solicitada: /FisicaFCPN.mp4
+   - Encabezados de solicitud: [Lista de encabezados de solicitud]
+   - Cookies enviadas: [No se enviaron cookies]
+
+5. **Paquete 5 - Solicitud GET /academico/style.css:**
+   - Método: GET
+   - URL solicitada: /academico/style.css
+   - Encabezados de solicitud: [Lista de encabezados de solicitud]
+   - Cookies enviadas: [No se enviaron cookies]
+
+6. **Paquete 6 - Respuesta 404 Not Found para GET /academico/style.css:**
+   - Código de estado: 404 Not Found
+   - Encabezados de respuesta: [Lista de encabezados de respuesta]
+   - Cookies recibidas: [No se recibieron cookies]
+
+Mis disculpas por la interrupción. Continuaré con el análisis de los paquetes restantes:
+
+7. **Paquete 7 - Solicitud GET /favicon.ico:**
+   - Método: GET
+   - URL solicitada: /favicon.ico
+   - Encabezados de solicitud: [Lista de encabezados de solicitud]
+   - Cookies enviadas: [No se enviaron cookies]
+
+8. **Paquete 8 - Respuesta 404 Not Found para GET /favicon.ico:**
+   - Código de estado: 404 Not Found
+   - Encabezados de respuesta: [Lista de encabezados de respuesta]
+   - Cookies recibidas: [No se recibieron cookies]
+
+9. **Paquete 9 - Solicitud GET /manual/tutorial/gateway.mp4:**
+   - Método: GET
+   - URL solicitada: /manual/tutorial/gateway.mp4
+   - Encabezados de solicitud: [Lista de encabezados de solicitud]
+   - Cookies enviadas: [No se enviaron cookies]
+
+10. **Paquete 10 - Respuesta 404 Not Found para GET /manual/tutorial/gateway.mp4:**
+    - Código de estado: 404 Not Found
+    - Encabezados de respuesta: [Lista de encabezados de respuesta]
+    - Cookies recibidas: [No se recibieron cookies]
+
+11. **Paquete 11 - Solicitud GET /manual/tutorial/gatewayerror.mp4:**
+    - Método: GET
+    - URL solicitada: /manual/tutorial/gatewayerror.mp4
+    - Encabezados de solicitud: [Lista de encabezados de solicitud]
+    - Cookies enviadas: [No se enviaron cookies]
+
+12. **Paquete 12 - Respuesta 404 Not Found para GET /manual/tutorial/gatewayerror.mp4:**
+    - Código de estado: 404 Not Found
+    - Encabezados de respuesta: [Lista de encabezados de respuesta]
+    - Cookies recibidas: [No se recibieron cookies]
+
+13. **Paquete 13 - Solicitud GET /manual/tutorial/proxyerror.mp4:**
+    - Método: GET
+    - URL solicitada: /manual/tutorial/proxyerror.mp4
+    - Encabezados de solicitud: [Lista de encabezados de solicitud]
+    - Cookies enviadas: [No se enviaron cookies]
+
+14. **Paquete 14 - Respuesta 404 Not Found para GET /manual/tutorial/proxyerror.mp4:**
+    - Código de estado: 404 Not Found
+    - Encabezados de respuesta: [Lista de encabezados de respuesta]
+    - Cookies recibidas: [No se recibieron cookies]
+
+15. **Paquete 15 - Solicitud GET /manual/tutorial/index.html:**
+    - Método: GET
+    - URL solicitada: /manual/tutorial/index.html
+    - Encabezados de solicitud: [Lista de encabezados de solicitud]
+    - Cookies enviadas: [No se enviaron cookies]
+
+16. **Paquete 16 - Respuesta 404 Not Found para GET /manual/tutorial/index.html:**
+    - Código de estado: 404 Not Found
+    - Encabezados de respuesta: [Lista de encabezados de respuesta]
+    - Cookies recibidas: [No se recibieron cookies]
+
+17. **Paquete 17 - Solicitud GET /manual/tutorial/config.mp4:**
+    - Método: GET
+    - URL solicitada: /manual/tutorial/config.mp4
+    - Encabezados de solicitud: [Lista de encabezados de solicitud]
+    - Cookies enviadas: [No se enviaron cookies]
+
+18. **Paquete 18 - Respuesta 404 Not Found para GET /manual/tutorial/config.mp4:**
+    - Código de estado: 404 Not Found
+    - Encabezados de respuesta: [Lista de encabezados de respuesta]
+    - Cookies recibidas: [No se recibieron cookies]
+
+19. **Paquete 19 - Solicitud GET /manual/tutorial/proxyerror.mp4:**
+    - Método: GET
+    - URL solicitada: /manual/tutorial/proxyerror.mp4
+    - Encabezados de solicitud: [Lista de encabezados de solicitud]
+    - Cookies enviadas: [No se enviaron cookies]
+
+20. **Paquete 20 - Respuesta 404 Not Found para GET /manual/tutorial/proxyerror.mp4:**
+    - Código de estado: 404 Not Found
+    - Encabezados de respuesta: [Lista de encabezados de respuesta]
+    - Cookies recibidas: [No se recibieron cookies]
+
+21. **Paquete 21 - Solicitud GET /favicon.ico:**
+    - Método: GET
+    - URL solicitada: /favicon.ico
+    - Encabezados de solicitud: [Lista de encabezados de solicitud]
+    - Cookies enviadas: [No se enviaron cookies]
+
+22. **Paquete 22 - Respuesta 404 Not Found para GET /favicon.ico:**
+    - Código de estado: 404 Not Found
+    - Encabezados de respuesta: [Lista de encabezados de respuesta]
+    - Cookies recibidas: [No se recibieron cookies]
+
+23. **Paquete 23 - Solicitud GET /manual/tutorial/balancer.mp4:**
+    - Método: GET
+    - URL solicitada: /manual/tutorial/balancer.mp4
+    - Encabezados de solicitud: [Lista de encabezados de solicitud]
+    - Cookies enviadas: [No se enviaron cookies]
+
+24. **Paquete 24 - Respuesta 404 Not Found para GET /manual/tutorial/balancer.mp4:**
+    - Código de estado: 404 Not Found
+    - Encabezados de respuesta: [Lista de encabezados de respuesta]
+    - Cookies recibidas: [No se recibieron cookies]
+
+25. **Paquete 25 - Solicitud GET /manual/tutorial/traffic.mp4:**
+    - Método: GET
+    - URL solicitada: /manual/tutorial/traffic.mp4
+    - Encabezados de solicitud: [Lista de encabezados de solicitud]
+    - Cookies enviadas: [No se enviaron cookies]
+
+
+  1. **Paquete 1 - Solicitud GET /style.css:**
+   - Método: GET
+   - URL solicitada: /style.css
+   - Encabezados de solicitud:
+     - Host: www.fiumsa.edu.bo
+     - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+     - Accept: text/css,*/*;q=0.1
+     - Accept-Language: en-US,en;q=0.5
+     - Accept-Encoding: gzip, deflate
+     - Connection: keep-alive
+     - Referer: http://www.fiumsa.edu.bo/fiumsal.html
+   - Cookies enviadas: No se enviaron cookies
+
+2. **Paquete 2 - Respuesta 404 Not Found para GET /style.css:**
+   - Código de estado: 404 Not Found
+   - Encabezados de respuesta:
+     - Date: Wed, 13 Mar 2024 20:37:10 GMT
+     - Server: Apache/2.2.16 (Debian)
+     - Vary: Accept-Encoding
+     - Content-Encoding: gzip
+     - Content-Length: 242
+     - Keep-Alive: timeout=15, max=100
+     - Connection: Keep-Alive
+     - Content-Type: text/html; charset=iso-8859-1
+   - Cookies recibidas: No se recibieron cookies
+
+3. **Paquete 3 - Solicitud GET /Estacion_GAW.mp4:**
+   - Método: GET
+   - URL solicitada: /Estacion_GAW.mp4
+   - Encabezados de solicitud:
+     - Host: www.fiumsa.edu.bo
+     - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+     - Accept: video/webm,video/ogg,video/*;q=0.9,application/ogg;q=0.7,audio/*;q=0.6,*/*;q=0.5
+     - Accept-Language: en-US,en;q=0.5
+     - Range: bytes=0-
+     - Connection: keep-alive
+     - Referer: http://www.fiumsa.edu.bo/fiumsar.html
+     - Accept-Encoding: identity
+   - Cookies enviadas: No se enviaron cookies
+
+4. **Paquete 4 - Solicitud GET /FisicaFCPN.mp4:**
+   - Método: GET
+   - URL solicitada: /FisicaFCPN.mp4
+   - Encabezados de solicitud:
+     - Host: www.fiumsa.edu.bo
+     - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+     - Accept: video/webm,video/ogg,video/*;q=0.9,application/ogg;q=0.7,audio/*;q=0.6,*/*;q=0.5
+     - Accept-Language: en-US,en;q=0.5
+     - Range: bytes=0-
+     - Connection: keep-alive
+     - Referer: http://www.fiumsa.edu.bo/fiumsar.html
+     - Accept-Encoding: identity
+   - Cookies enviadas: No se enviaron cookies
+
+5. **Paquete 5 - Solicitud GET /academico/style.css:**
+   - Método: GET
+   - URL solicitada: /academico/style.css
+   - Encabezados de solicitud:
+     - Host: www.fiumsa.edu.bo
+     - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+     - Accept: text/css,*/*;q=0.1
+     - Accept-Language: en-US,en;q=0.5
+     - Accept-Encoding: gzip, deflate
+     - Connection: keep-alive
+     - Referer: http://www.fiumsa.edu.bo/academico/academic.html
+   - Cookies enviadas: No se enviaron cookies
+
+
+Paquete 6:
+- Método: GET
+- URI solicitada: /academico/style.css
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: text/css,*/*;q=0.1
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/academico/academic.html
+
+Paquete 7:
+- Método: GET
+- URI solicitada: /academico/pensum.html
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/academico/academic.html
+  - Upgrade-Insecure-Requests: 1
+
+Paquete 8:
+- Versión del protocolo: HTTP/1.1
+- Código de estado: 404
+- Frase de respuesta: Not Found
+- Fecha: Wed, 13 Mar 2024 20:37:17 GMT
+- Servidor: Apache/2.2.16 (Debian)
+- Variación: Accept-Encoding
+- Codificación de contenido: gzip
+- Longitud del contenido: 248 bytes
+- Conexión: Keep-Alive
+- Tipo de contenido: text/html; charset=iso-8859-1
+
+Paquete 9:
+- Método: GET
+- URI solicitada: /academico/erye.css
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: text/css,*/*;q=0.1
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/academico/pensum.html
+
+Paquete 10:
+- Versión del protocolo: HTTP/1.1
+- Código de estado: 200
+- Frase de respuesta: OK
+- Fecha: Wed, 13 Mar 2024 20:37:24 GMT
+- Servidor: Apache/2.2.16 (Debian)
+- Última modificación: Tue, 27 Nov 2012 18:48:39 GMT
+- ETag: "14004-6d6-4cf7e7f838fc0"
+- Acepta rangos: bytes
+- Variación: Accept-Encoding
+- Codificación de contenido: gzip
+- Longitud del contenido: 495 bytes
+- Conexión: Keep-Alive
+- Tipo de contenido: text/css
+
+Aquí están los detalles de los paquetes del 11 al 20:
+
+Paquete 11:
+- Método: GET
+- URI solicitada: /academico/plan-academico.htm
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/academico/academic.html
+  - Upgrade-Insecure-Requests: 1
+
+Paquete 12:
+- Versión del protocolo: HTTP/1.1
+- Código de estado: 200
+- Frase de respuesta: OK
+- Fecha: Wed, 13 Mar 2024 20:37:32 GMT
+- Servidor: Apache/2.2.16 (Debian)
+- Última modificación: Wed, 10 May 2017 16:05:53 GMT
+- ETag: "1400c-794b-54f2da58a9a40"
+- Acepta rangos: bytes
+- Variación: Accept-Encoding
+- Codificación de contenido: gzip
+- Longitud del contenido: 8228 bytes
+- Conexión: Keep-Alive
+- Tipo de contenido: text/html
+
+Paquete 13:
+- Método: GET
+- URI solicitada: /autoridades1.html
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/fiumsal.html
+  - Upgrade-Insecure-Requests: 1
+
+Paquete 14:
+- Versión del protocolo: HTTP/1.1
+- Código de estado: 404
+- Frase de respuesta: Not Found
+- Fecha: Wed, 13 Mar 2024 20:37:44 GMT
+- Servidor: Apache/2.2.16 (Debian)
+- Variación: Accept-Encoding
+- Codificación de contenido: gzip
+- Longitud del contenido: 246 bytes
+- Conexión: Keep-Alive
+- Tipo de contenido: text/html; charset=iso-8859-1
+
+Paquete 15:
+- Método: GET
+- URI solicitada: /sobofi/images/afiche09_ico.jpg
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: image/avif,image/webp,*/*
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/sobofi/index.html
+
+Aquí están los detalles de los paquetes del 16 al 20:
+
+Paquete 16:
+- Método: GET
+- URI solicitada: /sobofi/rn_fisica19.html
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/fiumsal.html
+  - Upgrade-Insecure-Requests: 1
+
+Paquete 17:
+- Versión del protocolo: HTTP/1.1
+- Código de estado: 200
+- Frase de respuesta: OK
+- Fecha: Wed, 13 Mar 2024 20:37:56 GMT
+- Servidor: Apache/2.2.16 (Debian)
+- Última modificación: Thu, 26 Sep 2019 20:47:45 GMT
+- ETag: "38005-10f8-5937ae1ac1e40"
+- Acepta rangos: bytes
+- Variación: Accept-Encoding
+- Codificación de contenido: gzip
+- Longitud del contenido: 1714 bytes
+- Conexión: Keep-Alive
+- Tipo de contenido: text/html
+
+Paquete 18:
+- Método: GET
+- URI solicitada: /sobofi/images/SOBOFI-2019.jpg
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: image/avif,image/webp,*/*
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/sobofi/rn_fisica19.html
+
+Paquete 19:
+- Método: GET
+- URI solicitada: /sobofi/TSME/cost3.jpg
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: image/avif,image/webp,*/*
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/sobofi/rn_fisica19.html
+
+Paquete 20:
+- Método: GET
+- URI solicitada: /sobofi/TSME/cost1.jpg
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: image/avif,image/webp,*/*
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/sobofi/rn_fisica19.html
+
+Aquí están los detalles de los paquetes del 21 al 25:
+
+Paquete 21:
+- Método: GET
+- URI solicitada: /sobofi/TSME/cost2.jpg
+- Versión del protocolo: HTTP/1.1
+- Encabezados de solicitud:
+  - Host: www.fiumsa.edu.bo
+  - User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+  - Accept: image/avif,image/webp,*/*
+  - Accept-Language: en-US,en;q=0.5
+  - Accept-Encoding: gzip, deflate
+  - Connection: keep-alive
+  - Referer: http://www.fiumsa.edu.bo/sobofi/rn_fisica19.html
+
+Paquete 22:
+- Versión del protocolo: HTTP/1.1
+- Código de estado: 200
+- Frase de respuesta: OK
+- Fecha: Wed, 13 Mar 2024 20:37:56 GMT
+- Servidor: Apache/2.2.16 (Debian)
+- Última modificación: Thu, 26 Sep 2019 20:43:30 GMT
+- ETag: "42174-4738-5937ad2792080"
+- Acepta rangos: bytes
+- Longitud del contenido: 18232 bytes
+- Conexión: Keep-Alive
+- Tipo de contenido: image/jpeg
+
+Paquete 23:
+- Versión del protocolo: HTTP/1.1
+- Código de estado: 200
+- Frase de respuesta: OK
+- Fecha: Wed, 13 Mar 2024 20:37:56 GMT
+- Servidor: Apache/2.2.16 (Debian)
+- Última modificación: Thu, 26 Sep 2019 20:43:28 GMT
+- ETag: "42173-54b1-5937ad25a9c00"
+- Acepta rangos: bytes
+- Longitud del contenido: 21681 bytes
+- Conexión: Keep-Alive
+- Tipo de contenido: image/jpeg
+
+Paquete 24:
+- Versión del protocolo: HTTP/1.1
+- Código de estado: 200
+- Frase de respuesta: OK
+- Fecha: Wed, 13 Mar 2024 20:37:56 GMT
+- Servidor: Apache/2.2.16 (Debian)
+- Última modificación: Thu, 26 Sep 2019 20:43:32 GMT
+- ETag: "42175-51c3-5937ad297a500"
+- Acepta rangos: bytes
+- Longitud del contenido: 20931 bytes
+- Conexión: Keep-Alive
+- Tipo de contenido: image/jpeg
+
+Paquete 25:
+- Versión del protocolo: HTTP/1.1
+- Código de estado: 200
+- Frase de respuesta: OK
+- Fecha: Wed, 13 Mar 2024 20:37:56 GMT
+- Servidor: Apache/2.2.16 (Debian)
+- Última modificación: Mon, 23 Sep 2019 16:18:47 GMT
+- ETag: "e00d-499bb1-5933ac63fa7c0"
+- Acepta rangos: bytes
+- Longitud del contenido: 4823985 bytes
+- Conexión: Keep-Alive
+- Tipo de contenido: image/jpeg  

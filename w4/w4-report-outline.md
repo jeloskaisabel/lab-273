@@ -1,16 +1,69 @@
-## Item 2: Errores Potenciales
-### 1. TCP Duplicate ACKs (Acknowledgments) (Frames 21, 23)
+# Actividad Complementaria
+#### Badani Davalos Kassandra Andrea
+#### Chavez Paredez Jeloska Isabel
+
+## Item 1: Formas de capturar paquetes con Wireshark
+Las principales  formas en que Wireshark puede capturar paquetes para su análisis en redes de las siguientes formas:
+1. **Captura en tiempo real desde una interfaz de red**:
+   - Esta es una forma común de capturar paquetes directamente desde una interfaz de red en tu sistema. Puedes seleccionar una interfaz de red específica, como una tarjeta de red Ethernet o una interfaz inalámbrica, y Wireshark mostrará los paquetes que están pasando por esa interfaz en ese momento.
+
+2. **Lectura de archivos de captura previos**:
+   - Wireshark puede analizar archivos de captura previamente guardados en el disco duro. Esto te permite revisar el tráfico de red capturado anteriormente y realizar análisis retrospectivos.
+
+3. **Captura remota a través de SSH**:
+   - Wireshark puede capturar paquetes de forma remota a través de una conexión SSH a otro sistema. Esto es útil si necesitas capturar el tráfico en una red remota a la que no tienes acceso físico. Para ello, necesitas un servidor SSH en el sistema remoto y permisos para ejecutar Wireshark en ese sistema.
+
+4. **Captura remota a través de un dispositivo de captura dedicado**:
+   - Wireshark puede recibir paquetes capturados por dispositivos de captura dedicados, como taps de red o SPAN ports en switches. Estos dispositivos están diseñados para copiar el tráfico de red y enviarlo a Wireshark para su análisis. Esto es útil para analizar el tráfico en redes grandes o complejas donde la captura en tiempo real en una interfaz de red local puede no ser práctica.
+
+5. **Captura de paquetes por protocolo**:
+   - Wireshark te permite capturar paquetes de acuerdo con un protocolo específico. Puedes configurar Wireshark para que solo capture paquetes que utilicen el protocolo TCP, UDP, HTTP, HTTPS, etc. Esto te permite enfocarte en un tipo específico de tráfico de red y analizarlo de manera más detallada.
+
+
+## Item 2: Identificación de Errores Potenciales
+En la Figura 1, se puede observar mediante el código de colores de Wireshark que los posibles errores se encuentran en los frames 20, 21, 23 y 24. Los paquetes marcados en negro en Wireshark indican que han sido descartados o tienen algún tipo de problema en su transmisión.
+
+<figure>
+  <img src="image-8.png" align="center">
+  <figcaption align="center">Figura 1: Captura del tráfico de red junto con la interpretación de colores proporcionada por Wireshark</figcaption>
+</figure>
+
+### 1. Error de Captura de Segmento Anterior (Previous segment not captured) (Frame 20)
+El error observado en el paquete del Frame 20 (ver figura 2) se manifiesta como la advertencia "Previous segment(s) not captured", indicando que los segmentos anteriores a este no fueron registrados en la trama de red. Esta advertencia es típica al iniciar una captura de tráfico, especialmente cuando se inicia después de que la comunicación TCP ya haya comenzado. La ausencia de estos segmentos previos dificulta el análisis completo de la secuencia de la comunicación TCP.
+
+Esta advertencia se genera cuando los segmentos anteriores al actual no están disponibles en la captura de tráfico. Esta carencia de segmentos previos complica la comprensión total de la comunicación TCP, incluyendo aspectos críticos como la secuencia de datos, los números de secuencia y de acuse de recibo (ACK), entre otros elementos cruciales para el análisis de la interacción entre el emisor y el receptor.
+
+La advertencia afecta la relación con los frames tanto anteriores como posteriores en la secuencia de la comunicación TCP. La falta de segmentos previos limita la capacidad de establecer una conexión lógica y completa entre estos frames. Es crucial destacar que esta advertencia es algo común al inicio de una captura y no necesariamente señala un problema grave en la comunicación. Más bien, indica una restricción en la información disponible para el análisis exhaustivo de la interacción TCP.
+
+<figure>
+  <img src="image-4.png" align="center">
+  <figcaption align="center">Figura 2: Información sobre el Error de Captura del Segmento Anterior en el Frame 20</figcaption>
+</figure>
+
+
+### 2. TCP Duplicate ACKs (Acknowledgments) (Frames 21, 23)
 
 En el análisis de los paquetes de la captura de tráfico, se han detectado errores relacionados con TCP Duplicate ACKs (Acknowledgments) en los paquetes 21 y 23. Estos errores señalan la recepción de confirmaciones duplicadas de paquetes que fueron previamente enviados, lo cual sugiere la posible existencia de problemas relacionados con la congestión en la red o pérdida de paquetes.
 
-En el paquete 21, se identificó un TCP Duplicate ACK #1, lo que indica que se recibió un duplicado del ACK asociado con el paquete número 19. El ACK relativo es 9577, lo que evidencia la recepción de datos hasta ese punto específico. Además, la ventana de recepción en este paquete es de 196, mostrando la capacidad del receptor para aceptar más datos. La presencia de un checksum no verificado resalta una falta de integridad en los datos transmitidos.
+En el paquete 21 (ver figura 3), se identificó un TCP Duplicate ACK #1, lo que indica que se recibió un duplicado del ACK asociado con el paquete número 19. El ACK relativo es 9577, lo que evidencia la recepción de datos hasta ese punto específico. Además, la ventana de recepción en este paquete es de 196, mostrando la capacidad del receptor para aceptar más datos. La presencia de un checksum no verificado resalta una falta de integridad en los datos transmitidos.
 
-Por otro lado, en el paquete 23 se observó un TCP Duplicate ACK #2, indicando un segundo duplicado del ACK del paquete 19. Los valores de secuencia relativa, ACK relativo y ventana de recepción en este paquete fueron consistentes con el primer duplicado, confirmando la recepción de datos hasta la secuencia relativa 9577. Al igual que en el paquete anterior, la ventana de recepción es de 196, lo que indica la capacidad del receptor para aceptar más datos.
+Por otro lado, en el paquete 23 (ver figura 4) se observó un TCP Duplicate ACK #2, indicando un segundo duplicado del ACK del paquete 19. Los valores de secuencia relativa, ACK relativo y ventana de recepción en este paquete fueron consistentes con el primer duplicado, confirmando la recepción de datos hasta la secuencia relativa 9577. Al igual que en el paquete anterior, la ventana de recepción es de 196, lo que indica la capacidad del receptor para aceptar más datos.
 
 Ambos errores de Duplicate ACK (#1 y #2) reflejan un comportamiento atípico en la comunicación TCP, donde el receptor envía confirmaciones duplicadas consecutivas para el mismo paquete. Esta situación puede ser indicativa de problemas de congestión en la red, donde los ACKs se reenvían debido a la pérdida de paquetes o a la congestión en la ruta de entrega de los datos.
 
-### 2. TCP Fast Retransmission (Frame 24)
-El Frame 24 revela un evento de TCP Fast Retransmission, una acción tomada por el protocolo TCP cuando el receptor detecta la pérdida de un paquete o recibe tres ACK duplicados consecutivos. En lugar de esperar al tiempo de espera para retransmitir el paquete perdido, TCP realiza una retransmisión rápida para mejorar la eficiencia y reducir la latencia en la recuperación de datos perdidos.
+<div style="display: flex; justify-content: space-between; gap: 20px;">
+  <figure style="flex: 1;">
+    <img src="image-5.png" style="width: 100%; height: auto;">
+    <figcaption align="center">Figura 3: Especificaciones de los ACKs duplicados de TCP en el frame 21</figcaption>
+  </figure>
+  <figure style="flex: 1;">
+    <img src="image-6.png" style="width: 100%; height: auto;">
+    <figcaption align="center">Figura 4: Especificaciones de los ACKs duplicados de TCP en el frame 23</figcaption>
+  </figure>
+</div>
+
+### 3. TCP Fast Retransmission (Frame 24)
+El Frame 24 revela un evento de TCP Fast Retransmission (ver figura 5), una acción tomada por el protocolo TCP cuando el receptor detecta la pérdida de un paquete o recibe tres ACK duplicados consecutivos. En lugar de esperar al tiempo de espera para retransmitir el paquete perdido, TCP realiza una retransmisión rápida para mejorar la eficiencia y reducir la latencia en la recuperación de datos perdidos.
 
 Este hallazgo sugiere que ha ocurrido una pérdida de paquetes en la comunicación, posiblemente debido a congestión en la red, problemas en el enlace de comunicación o errores en los dispositivos de red. La rápida retransmisión busca garantizar la correcta entrega de datos al destino, aunque también puede señalar problemas de rendimiento o calidad en la conexión.
 
@@ -22,75 +75,89 @@ En relación con otros paquetes:
 
 1. **Frame 23 (Duplicate ACK #2):** Este paquete es un ACK duplicado del paquete original perdido. La TCP Fast Retransmission se activa en respuesta a estos ACK duplicados para retransmitir rápidamente el paquete perdido.
 2. **Frame 25 (ACK al paquete retransmitido):** Tras la retransmisión rápida en el Frame 24, se envía un ACK confirmando la recepción del paquete retransmitido.
-3. **Frame 26 (ACK del paquete original):** Este paquete confirma la recepción del paquete original perdido, completando así el proceso de recuperación de la pérdida de datos.
 
-## 3. Error de Captura de Segmento Anterior (Previous segment not captured) (Frame 20)
-El error observado en el paquete del Frame 20 se manifiesta como la advertencia "Previous segment(s) not captured", indicando que los segmentos anteriores a este no fueron registrados en la trama de red. Esta advertencia es típica al iniciar una captura de tráfico, especialmente cuando se inicia después de que la comunicación TCP ya haya comenzado. La ausencia de estos segmentos previos dificulta el análisis completo de la secuencia de la comunicación TCP.
-
-Esta advertencia se genera cuando los segmentos anteriores al actual no están disponibles en la captura de tráfico. Esta carencia de segmentos previos complica la comprensión total de la comunicación TCP, incluyendo aspectos críticos como la secuencia de datos, los números de secuencia y de acuse de recibo (ACK), entre otros elementos cruciales para el análisis de la interacción entre el emisor y el receptor.
-
-La advertencia afecta la relación con los frames tanto anteriores como posteriores en la secuencia de la comunicación TCP. La falta de segmentos previos limita la capacidad de establecer una conexión lógica y completa entre estos frames. Es crucial destacar que esta advertencia es algo común al inicio de una captura y no necesariamente señala un problema grave en la comunicación. Más bien, indica una restricción en la información disponible para el análisis exhaustivo de la interacción TCP.
+<figure>
+  <img src="image-7.png" align="center">
+  <figcaption align="center">Figura 5: Detalles sobre la Retransmisión Rápida (TCP Fast Retransmission) observada en el frame 24</figcaption>
+</figure>
 
 
-## Item 3: Calcular % paquetes perdidos
-Los paquetes retransmitidos y los ACK duplicados son indicadores clave de pérdida de paquetes en una red TCP/IP. La pérdida de paquetes puede ocurrir debido a factores como congestión de red, errores en el enlace, o problemas en los dispositivos de red.
 
-1. **Retransmisión de Paquetes:**
-   - Cuando un paquete se pierde en la red, TCP espera un tiempo para recibir el ACK que confirma su recepción. Si este ACK no llega dentro del tiempo esperado, TCP retransmite el paquete. La detección de paquetes retransmitidos indica pérdida de paquetes en la red.
+## Item 3: Calcular el Porcentaje % de Paquetes Perdidos
 
-2. **ACKs Duplicados:**
-   - Un ACK duplicado indica al emisor que se ha perdido un paquete y debe ser retransmitido. Esto ocurre cuando el receptor detecta la pérdida de un paquete o recibe un paquete fuera de secuencia.
+Primero, analizaremos el flujo de paquetes en busca de posibles pérdidas para determinar si hay alguna pérdida de paquetes en la comunicación:
 
-Analizando los paquetes específicos proporcionados y su relación con estos indicadores:
+1. **Frame 19:** Se inicia con un segmento TCP con el flag ACK (Acknowledgment) activo, confirmando la recepción de datos del lado del receptor. Los valores de secuencia y ACK son 97 y 12313, respectivamente.
 
-- **Paquete 21 - TCP Duplicate ACK #1:**
-  - Este paquete muestra un Duplicate ACK del paquete 19, indicando que el receptor no recibió el paquete original. Sugiere la pérdida del paquete 19 en la red.
+2. **Frame 20:** Este frame muestra una retransmisión rápida del segmento anterior (Frame 19), posiblemente debido a un timeout o a la recepción de duplicados de ACKs. Aunque no se menciona que el flag PSH (Push) esté activo en el análisis del paquete, la retransmisión sugiere que los datos se están enviando de forma urgente.
 
-- **Paquete 23 - TCP Duplicate ACK #2:**
-  - Similar al paquete 21, muestra un Duplicate ACK del paquete 19, confirmando la pérdida persistente del paquete 19.
+3. **Frame 21:** Es un ACK del Frame 20, confirmando la recepción del segmento retransmitido.
 
-- **Paquete 24 - TCP Fast Retransmission:**
-  - Indica una Fast Retransmission debido a la pérdida de paquetes o ACKs duplicados consecutivos. Confirma la pérdida del paquete 19 y su retransmisión rápida.
+4. **Frame 22:** El servidor envía un segmento TCP ACK confirmando la recepción de los datos anteriores y también muestra datos adicionales en este segmento.
 
-Estos eventos evidencian una pérdida de paquetes en la comunicación TCP. El porcentaje de pérdida se calcula como el número de paquetes perdidos dividido por el número total de paquetes. En este caso, de los 27 paquetes, 3 muestran pérdida o retransmisión.
+5. **Frame 23:** Se detecta un duplicado de ACK, lo que indica que el cliente ha recibido un segmento posterior al esperado. Esta situación puede ser señal de que un segmento se perdió en el camino o de que existen problemas en la entrega de los datos.
 
-\[
-\text{Porcentaje de Pérdida} = \frac{\text{Número de Paquetes Perdidos}}{\text{Número Total de Paquetes}} \times 100
-\]
+6. **Frame 24:** Ocurre una retransmisión rápida del segmento perdido, indicado por el Frame 22. Aunque no se menciona el flag PSH en el análisis, la urgencia en la entrega de estos datos se infiere por la retransmisión rápida.
 
-\[
-\text{Porcentaje de Pérdida} = \frac{3}{27} \times 100 \approx 11.11\%
-\]
+7. **Frame 25:** Se muestra el ACK del segmento retransmitido en el Frame 24, confirmando que el servidor ha recibido los datos retransmitidos correctamente.
 
-Por lo tanto, se experimenta un porcentaje de pérdida de paquetes de aproximadamente 11.11%. Esto indica que alrededor del 11.11% de los paquetes enviados no fueron recibidos correctamente y requirieron retransmisiones o se detectaron como ACK duplicados.
+El flujo de frames indica una posible pérdida de segmentos en la red. Aunque el protocolo TCP logra recuperar la pérdida mediante retransmisiones rápidas y confirmaciones de recepción, es importante tener en cuenta estos eventos para garantizar la integridad y eficiencia de la comunicación. El porcentaje de pérdida de paquetes es 0%, ya que se recuperaron todas las transmisiones perdidas.
 
-## Item 4:
+## Item 4: Calcular el RTT
+En la figura 6, se presenta el diagrama que muestra el Round-Trip Time (RTT) a lo largo de la captura realizada. Es importante destacar que el RTT en el frame 19 es de 0.01 ms, mientras que en el frame 25 es de 0.008 ms. Estos puntos representan los momentos en los que se evaluó la posible pérdida de paquetes.
 
-Voy a analizar nuevamente los 27 paquetes que me proporcionaste para identificar dónde se experimenta la pérdida y cómo calculamos el RTT. A continuación, describiré el proceso paso a paso:
+<figure>
+  <img src="image-2.png" align="center">
+  <figcaption align="center">Figura 6: Diagrama de Número de Secuencia vs. RTT</figcaption>
+</figure>
 
-1. **Identificación de la Pérdida de Paquetes:**
-   Vamos a revisar cada paquete para identificar cuáles indican pérdida o retransmisión de paquetes. Los paquetes que sugieren pérdida o retransmisión son aquellos que tienen duplicados de ACK o indicaciones de retransmisión.
 
-2. **Cálculo del RTT:**
-   Utilizaremos los paquetes originales y sus correspondientes ACK para calcular el RTT. El RTT se calcula como la diferencia de tiempo entre el envío del paquete original y la recepción del ACK correspondiente.
+![alt text](image.png)
+![alt text](image-1.png)
 
-Después de realizar el análisis detallado, identificaremos dónde se experimenta la pérdida de paquetes y cómo calcular el RTT en esa situación.
 
-Voy a proceder con la revisión de los paquetes nuevamente. Por favor, espera un momento.
+## Item 5: Estrategias para Proteger la Red de Ataques Externos
+Existen distintas medidas para proporcionan una sólida defensa contra una variedad de amenazas externas y ayudan a garantizar la seguridad y la integridad de los datos en una red.Entre ellas podemos mencionar:
+1. **Firewalls**: Configura y administra firewalls para controlar el tráfico de red entrante y saliente. Los firewalls pueden bloquear tráfico no autorizado y filtrar paquetes maliciosos antes de que lleguen a la red interna.
 
-Luego de analizar detenidamente los 27 paquetes que me proporcionaste, aquí está el resultado:
+2. **Actualizaciones de seguridad**: Mantén todos los dispositivos de red actualizados con los últimos parches de seguridad para protegerlos contra vulnerabilidades conocidas que podrían ser explotadas por atacantes externos.
 
-1. **Identificación de la Pérdida de Paquetes:**
-   Basándonos en los indicadores de pérdida y retransmisión que mencioné anteriormente, los paquetes que muestran pérdida o retransmisión son:
-   - Paquete 19: Originalmente enviado pero perdido en la red.
-   - Paquete 21: Duplicate ACK indicando la pérdida del paquete 19.
-   - Paquete 23: Duplicate ACK también indicando la pérdida del paquete 19.
-   - Paquete 24: Fast Retransmission debido a la pérdida del paquete 19.
+3. **Monitoreo de red**: Implementa herramientas de monitoreo de red, como sistemas de detección de intrusiones (IDS) y sistemas de prevención de intrusiones (IPS), para detectar y responder rápidamente a actividades sospechosas o no autorizadas en la red.
 
-2. **Cálculo del RTT:**
-   Para calcular el RTT en donde se experimenta la pérdida de paquetes, necesitamos los paquetes originales y sus correspondientes ACK. En este caso, podemos tomar el paquete 19 como el original y el paquete 22 como el ACK correspondiente.
+4. **Autenticación sólida**: Implementa políticas de autenticación sólidas, como contraseñas seguras y autenticación de dos factores, para proteger el acceso a la red y a los recursos internos.
 
-   El RTT se calcula restando el tiempo de envío del paquete original al tiempo de recepción del ACK:
-   \[
-   \text{RTT} = \text{Tiempo de Recepción del ACK} - \text{Tiempo de Envío del Paquete Original}
-   \]
+5. **Segmentación de red**: Divide la red en segmentos más pequeños y protegidos utilizando VLANs y subredes para limitar el impacto de un ataque y controlar el acceso a recursos sensibles.
+
+6. **Acceso remoto seguro**: Utiliza conexiones VPN para permitir el acceso remoto seguro a la red interna, cifrando el tráfico entre el dispositivo remoto y la red interna para protegerlo contra interceptaciones maliciosas.
+
+7. **Respaldo y recuperación de datos**: Implementa políticas de respaldo regular para proteger los datos críticos contra pérdidas debido a ataques externos y desarrolla planes de recuperación de desastres para restaurar la funcionalidad de la red en caso de un incidente de seguridad. 
+
+8. **Iptables**: Configura y administra iptables, una herramienta de filtrado de paquetes en sistemas Linux, para controlar el tráfico de red y establecer reglas de seguridad específicas.
+
+9. **Listas de acceso**: Utiliza listas de acceso para controlar el acceso a recursos de red específicos, como puertos, direcciones IP o servicios, y para restringir el tráfico basado en reglas predefinidas.
+
+## Item 6: Reglas IPTables para Proteger la Red
+
+Para proteger la red según el enunciado, podemos utilizar reglas iptables en el servidor de la red local de la sala de servidores (2do. Piso). 
+
+Claro, aquí tienes las tres reglas iptables más importantes seleccionadas entre las sugeridas por ti y por mí:
+
+1. **Restringir el tráfico entrante desde Internet a ciertos puertos específicos**:
+```bash
+iptables -A INPUT -p tcp --dport <puerto> -j DROP
+```
+Explicación: Esta regla iptables bloquea cualquier tráfico entrante desde Internet dirigido a un puerto específico en el servidor de la red local. Es importante para evitar accesos no autorizados a servicios que no deben ser accesibles desde el exterior.
+
+2. **Permitir solo el tráfico necesario (tráfico HTTP)**:
+```bash
+iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT
+```
+Explicación: Esta regla iptables permite el tráfico entrante en el puerto 80, utilizado para el protocolo HTTP. Solo se permite el tráfico necesario para servicios como el servidor web, lo que ayuda a limitar el acceso solo a servicios necesarios en el servidor.
+
+3. **Limitar el número de conexiones SSH**:
+```bash
+iptables -A INPUT -p tcp --syn --dport 22 -m connlimit --connlimit-above 3 -j REJECT
+```
+Explicación: Esta regla iptables limita el número de conexiones SSH entrantes al puerto 22. Limitar el número de conexiones SSH ayuda a prevenir ataques de fuerza bruta y evita la sobrecarga del servidor, protegiendo así un servicio crítico como SSH.
+
+

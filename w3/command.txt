@@ -1,0 +1,28 @@
+sudo airmon-ng start wlp4s0
+
+Found 4 processes that could cause trouble.
+Kill them using 'airmon-ng check kill' before putting
+the card in monitor mode, they will interfere by changing channels
+and sometimes putting the interface back in managed mode
+
+    PID Name
+    723 avahi-daemon
+    739 NetworkManager
+    802 wpa_supplicant
+    819 avahi-daemon
+
+PHY	Interface	Driver		Chipset
+
+phy0	wlp4s0		mt7921e		MEDIATEK Corp. MT7921 802.11ax PCI Express Wireless Network Adapter
+		(mac80211 monitor mode vif enabled for [phy0]wlp4s0 on [phy0]wlp4s0mon)
+		(mac80211 station mode vif disabled for [phy0]wlp4s0)
+
+jeloskaisabel@Jeloska-Laptop:~$ sudo wireshark
+ ** (wireshark:16925) 18:44:16.934880 [GUI WARNING] -- QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-root'
+ ** (wireshark:16925) 18:44:22.090481 [Capture MESSAGE] -- Capture Start ...
+ ** (wireshark:16925) 18:44:22.142322 [Capture MESSAGE] -- Capture started
+ ** (wireshark:16925) 18:44:22.142348 [Capture MESSAGE] -- File: "/tmp/wireshark_wlp4s0monMPFIK2.pcapng"
+ ** (wireshark:16925) 18:44:27.547327 [Capture MESSAGE] -- Capture Stop ...
+ ** (wireshark:16925) 18:44:27.602558 [Capture MESSAGE] -- Capture stopped.
+
+
