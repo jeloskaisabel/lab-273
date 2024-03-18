@@ -111,8 +111,9 @@ En la figura 6, se presenta el diagrama que muestra el Round-Trip Time (RTT) a l
   <figcaption align="center">Figura 6: Diagrama de Número de Secuencia vs. RTT</figcaption>
 </figure>
 
+
 <figure>
-  <img src="image-10.png" align="center">
+  <img src="image-11.png" align="center">
   <figcaption align="center">Figura 7: Gráfico de RTT vs Tiempo para los Paquetes 19 al 24. Muestra la variación del tiempo de respuesta en la red durante la transmisión.</figcaption>
 </figure>
 
@@ -169,24 +170,24 @@ Existen distintas medidas para proporcionan una sólida defensa contra una varie
 
 ## Item 6: Reglas IPTables para Proteger la Red
 
-Para proteger la red según el enunciado, podemos utilizar reglas iptables en el servidor de la red local de la sala de servidores. 
+Para proteger la red según el enunciado, podemos utilizar las siguientes reglas iptables en el servidor de la red local de la sala de servidores. 
 
 1. **Restringir el tráfico entrante desde Internet a ciertos puertos específicos**:
 ```bash
 iptables -A INPUT -p tcp --dport <puerto> -j DROP
 ```
-Explicación: Esta regla iptables bloquea cualquier tráfico entrante desde Internet dirigido a un puerto específico en el servidor de la red local. Es importante para evitar accesos no autorizados a servicios que no deben ser accesibles desde el exterior.
+Esta regla iptables bloquea cualquier tráfico entrante desde Internet dirigido a un puerto específico en el servidor de la red local. Es importante para evitar accesos no autorizados a servicios que no deben ser accesibles desde el exterior.
 
 2. **Permitir solo el tráfico necesario (tráfico HTTP)**:
 ```bash
 iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT
 ```
-Explicación: Esta regla iptables permite el tráfico entrante en el puerto 80, utilizado para el protocolo HTTP. Solo se permite el tráfico necesario para servicios como el servidor web, lo que ayuda a limitar el acceso solo a servicios necesarios en el servidor.
+Esta regla iptables permite el tráfico entrante en el puerto 80, utilizado para el protocolo HTTP. Solo se permite el tráfico necesario para servicios como el servidor web, lo que ayuda a limitar el acceso solo a servicios necesarios en el servidor.
 
 3. **Limitar el número de conexiones SSH**:
 ```bash
 iptables -A INPUT -p tcp --syn --dport 22 -m connlimit --connlimit-above 3 -j REJECT
 ```
-Explicación: Esta regla iptables limita el número de conexiones SSH entrantes al puerto 22. Limitar el número de conexiones SSH ayuda a prevenir ataques de fuerza bruta y evita la sobrecarga del servidor, protegiendo así un servicio crítico como SSH.
+Esta regla iptables limita el número de conexiones SSH entrantes al puerto 22. Limitar el número de conexiones SSH ayuda a prevenir ataques de fuerza bruta y evita la sobrecarga del servidor, protegiendo así un servicio crítico como SSH.
 
 
