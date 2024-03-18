@@ -104,16 +104,47 @@ Primero, analizaremos el flujo de paquetes en busca de posibles pérdidas para d
 El flujo de frames indica una posible pérdida de segmentos en la red. Aunque el protocolo TCP logra recuperar la pérdida mediante retransmisiones rápidas y confirmaciones de recepción, es importante tener en cuenta estos eventos para garantizar la integridad y eficiencia de la comunicación. El porcentaje de pérdida de paquetes es 0%, ya que se recuperaron todas las transmisiones perdidas.
 
 ## Item 4: Calcular el RTT
-En la figura 6, se presenta el diagrama que muestra el Round-Trip Time (RTT) a lo largo de la captura realizada. Es importante destacar que el RTT en el frame 19 es de 0.01 ms, mientras que en el frame 25 es de 0.008 ms. Estos puntos representan los momentos en los que se evaluó la posible pérdida de paquetes.
+En la figura 6, se presenta el diagrama que muestra el Round-Trip Time (RTT) a lo largo de la captura realizada. Es importante destacar que el RTT en el frame 19 es de 0.01 ms, mientras que en el frame 25 es de 0.008 ms (ver figura 7). Estos puntos representan los momentos en los que se evaluó la posible pérdida de paquetes.
 
 <figure>
   <img src="image-2.png" align="center">
   <figcaption align="center">Figura 6: Diagrama de Número de Secuencia vs. RTT</figcaption>
 </figure>
 
+<figure>
+  <img src="image-10.png" align="center">
+  <figcaption align="center">Figura 7: Gráfico de RTT vs Tiempo para los Paquetes 19 al 24. Muestra la variación del tiempo de respuesta en la red durante la transmisión.</figcaption>
+</figure>
 
-![alt text](image.png)
-![alt text](image-1.png)
+A continuación, analizamos el RTT en cada segmento afectado por la pérdida de paquetes y exploramos su proceso de recuperación.
+
+La fórmula para calcular el RTT es:
+
+```
+RTT = Tiempo de llegada del paquete de respuesta - Tiempo de llegada del paquete de solicitud
+```
+
+Los valores de RTT para los paquetes del 19 al 24 son:
+
+- Paquete 19 al 20:
+  ```
+  RTT = 1433254319.966187000 - 1433254319.966084000 ≈ 0.000103 segundos
+  ```
+
+- Paquete 21 al 22:
+  ```
+  RTT = 1433254319.966345000 - 1433254319.966198000 ≈ 0.000147 segundos
+  ```
+
+- Paquete 23 al 24:
+  ```
+  RTT = 1433254319.966423000 - 1433254319.966352000 ≈ 0.000071 segundos
+  ```
+
+
+
+
+
 
 
 ## Item 5: Estrategias para Proteger la Red de Ataques Externos
@@ -138,9 +169,7 @@ Existen distintas medidas para proporcionan una sólida defensa contra una varie
 
 ## Item 6: Reglas IPTables para Proteger la Red
 
-Para proteger la red según el enunciado, podemos utilizar reglas iptables en el servidor de la red local de la sala de servidores (2do. Piso). 
-
-Claro, aquí tienes las tres reglas iptables más importantes seleccionadas entre las sugeridas por ti y por mí:
+Para proteger la red según el enunciado, podemos utilizar reglas iptables en el servidor de la red local de la sala de servidores. 
 
 1. **Restringir el tráfico entrante desde Internet a ciertos puertos específicos**:
 ```bash
