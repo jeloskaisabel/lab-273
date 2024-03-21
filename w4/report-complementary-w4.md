@@ -113,7 +113,7 @@ En la figura 6, se presenta el diagrama que muestra el Round-Trip Time (RTT) a l
 
 
 <figure>
-  <img src="image-11.png" align="center">
+  <img src="image-10.jpg" align="center">
   <figcaption align="center">Figura 7: Gráfico de RTT vs Tiempo para los Paquetes 19 al 24. Muestra la variación del tiempo de respuesta en la red durante la transmisión.</figcaption>
 </figure>
 
@@ -170,11 +170,7 @@ Existen distintas medidas para proporcionan una sólida defensa contra una varie
 
 ## Item 6: Reglas IPTables para Proteger la Red
 
-<<<<<<< HEAD
-Para proteger la red según el enunciado, podemos utilizar reglas iptables en el servidor de la red local de la sala de servidores (2do. Piso). 
-=======
 Para proteger la red según el enunciado, podemos utilizar las siguientes reglas iptables en el servidor de la red local de la sala de servidores. 
->>>>>>> origin/main
 
 1. **Restringir el tráfico entrante desde Internet a ciertos puertos específicos**:
 ```bash
