@@ -1,7 +1,7 @@
 # Welcome to Serial Reports! 🌐🔬
 
 ## Introduction
-This repository is dedicated to sharing insightful reports about the network laboratories in our college. Whether you're a student, faculty member, or simply curious about our network infrastructure, you'll find valuable information and updates here.
+This repository is dedicated to sharing insightful reports about the network laboratories in college. Whether you're a student, faculty member, or simply curious about our network infrastructure, you'll find valuable information and updates here.
 
 ## Purpose
 The primary objective of this project is to document and showcase the various network laboratories available in college. Through detailed reports and analysis, we aim to provide an overview of the equipment, technologies, experiments, and learning opportunities offered in these labs.

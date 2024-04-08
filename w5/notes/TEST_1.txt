@@ -1,0 +1,6 @@
+TEST DE CONFIGURACION
+
+named-checkconf /etc/bind/named.conf
+named-checkconf /etc/bind/named.conf.local
+named-checkzone ejemplo.com /etc/bind/db.ejemplo.com
+named-checkzone 192.168.0.34/24 /etc/bind/db.34

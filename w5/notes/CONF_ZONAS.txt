@@ -1,0 +1,15 @@
+//-------ZONA DIRECTA-----------------------
+
+zone "ejemplo.com"{
+	type master;
+	file "/etc/bind/db.ejemplo.com";
+};
+
+
+//-------ZONA INVERSA-----------------------
+
+zone "0.168.192.in-addr.arpa"{
+	type master;
+	file "/etc/bind/db.0.168.192";
+};
+
