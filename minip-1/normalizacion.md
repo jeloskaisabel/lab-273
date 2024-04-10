@@ -64,3 +64,4 @@ Ahora, actualizaremos la tabla de Préstamos para que solo contenga la **clave p
 | 1234567890 | Usuario 3         | Dirección 3          | 2023-03-05        | 2023-03-20          |
 | 2345678901 | Usuario 2         | Dirección 2          | 2023-02-10        | 2023-02-25          |
 | 3456789012 | Usuario 2         | Dirección 2          | 2023-04-15        | 2023-04-30          |
+

@@ -94,6 +94,8 @@ Aquí tienes una guía paso a paso para configurar un servidor de correo utiliza
 - **Enviar un correo de prueba** desde Evolution a `usuario@midominio.test` y verificar que llega correctamente.
 - **Responder o enviar un correo** desde la misma cuenta para asegurar que tanto la recepción como el envío funcionan correctamente.
 
+
+
 ### Notas Finales
 
 - Este es un entorno básico de configuración para propósitos de prueba. Para entornos de producción, se deben considerar configuraciones adicionales de seguridad, como el uso de SSL/TLS para la encriptación de la conexión
