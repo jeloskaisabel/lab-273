@@ -1,5 +1,41 @@
-## 1. Instalación y configuración - Dovecot
+# Miniproyecto 1: 
+### Instalación y configuración de un servidor de correo (Dovecot) y un cliente de correo (Evolution)
+# A. Introducción
+Este informe técnico documenta el procedimiento exhaustivo para la implementación de una infraestructura de servidor de correo electrónico bajo un entorno Linux, utilizando Dovecot como servidor de correo y Postfix como el agente de transferencia de correo (MTA). Se ha efectuado la configuración para soportar los protocolos IMAP4 y POP3, facilitando tanto conexiones convencionales como seguras (IMAPS y POPS), y se ha incorporado el acceso al correo electrónico a través de una interfaz web con SquirrelMail. Adicionalmente, se ha integrado el cliente de correo electrónico Evolution, configurado para gestionar el correo a través de los protocolos mencionados.
 
+# B. Objetivos propuestos
+
+El objetivo primordial de este proyecto es la puesta en marcha de un servidor de correo electrónico que asegure una transmisión de datos normal y segura. Se pretende:
+
+- Implementar protocolos de comunicación estándar y cifrados para la recepción y envío de correos electrónicos.
+- Proveer un cliente de correo electrónico de escritorio compatible con los protocolos establecidos.
+- Configurar una agente de correo web para el acceso y gestión de correo electrónico.
+- Verificar la funcionalidad integral del sistema mediante pruebas.
+# C. Equipamiento y Software Requerido
+
+
+**Lado del Servidor:**
+- **Hardware:**
+  - Conectividad de red estable y una dirección IP fija para garantizar la accesibilidad continua al servidor de correo.
+
+- **Software:**
+  - **Sistema Operativo:** Debian Linux, preferentemente una versión estable y soportada para garantizar actualizaciones y parches de seguridad.
+  - **MTA (Mail Transfer Agent):** Postfix, por su flexibilidad y robustez, configurado para manejar el tráfico SMTP y las funciones de enrutamiento de correos.
+  - **MDA (Mail Delivery Agent):** Dovecot, seleccionado por su soporte a IMAP y POP3 y su capacidad de integración con sistemas de autenticación y almacenamiento de correos.
+  - **Servidor Web:** Apache para alojar la interfaz web de SquirrelMail.
+  - **Cliente de Correo Web:** SquirrelMail, elegido por su compatibilidad con múltiples navegadores y facilidad de uso.
+  - **Firewall:** UFW (Uncomplicated Firewall), para proteger el servidor de accesos no autorizados.
+  - **Certificados SSL/TLS:** Para las versiones seguras de POP e IMAP (POPS y IMAPS), se requieren certificados emitidos por una autoridad de certificación o generados localmente, para asegurar la encriptación de la comunicación de correo electrónico.
+
+**Lado del Cliente:**
+- **Software:**
+  - **Cliente de Correo:** Evolution, que será configurado para trabajar con los protocolos IMAP4 y POP3, tanto en sus versiones estándar como cifradas. Deberá ser compatible con la versión actual del sistema operativo del usuario.
+  - **Sistema Operativo:** Sistema operativo que soporte el cliente de correo Evolution.
+  - **Navegador Web:** Un navegador actualizado es necesario para acceder a la interfaz web proporcionada por SquirrelMail.
+
+# D. Procedimiento de instalación y configuración
+
+## 1. Dovecot: Instalación y configuración
 ### 1.1 Actualización del Sistema
 Inicialmente, debemos asegurarnos que el sistema operativo esté completamente actualizado para evitar incompatibilidades o vulnerabilidades de seguridad. Para tal efecto ejecutamos los siguientes comandos en la terminal:
 
@@ -11,7 +47,7 @@ sudo apt-get upgrade
 ![alt text](image-1.png)
 
 ### 1.2. Instalación de Dovecot
-Posteriormente, se procedeció a la instalación del software Dovecot, el cual es esencial para la habilitación de los servicios de correo electrónico mediante los protocolos POP3 e IMAP4. Utilizamos el gestor de paquetes `apt-get` para instalar los componentes necesarios con el siguiente comando:
+A continuación, se procedeció a la instalación del software Dovecot, el cual es esencial para la habilitación de los servicios de correo electrónico mediante los protocolos POP3 e IMAP4. Utilizamos el gestor de paquetes `apt-get` para instalar los componentes necesarios con el siguiente comando:
 
 ```bash
 sudo apt-get install dovecot-core dovecot-imapd dovecot-pop3d
@@ -56,7 +92,7 @@ Establecimos el valor de `port` en `143` para IMAP y `110` para POP3, como se mu
 
 Tras realizar las modificaciones mencionadas, guardamos los cambios.
 
-### Paso 2: Desactivación de SSL/TLS
+#### Paso 2: Desactivación de SSL/TLS
 
 Procedimos a editar el archivo ` /etc/dovecot/conf.d/10-ssl.conf` para desactivar el cifrado SSL/TLS globalmente. Este archivo es responsable de definir la política de Dovecot respecto al manejo de conexiones seguras SSL/TLS. Contiene parámetros que habilitan o deshabilitan el cifrado, especifican la ubicación de los certificados y las claves, y definen la suite de cifrado a utilizar, entre otros ajustes relacionados con la seguridad.
 
@@ -82,23 +118,24 @@ En el archivo `dovecot.conf`, modificamos la directiva `listen`. Por defecto, es
 ``` bash
 listen = 192.168.0.12, ::
 ```
-Indicamos que el servicio debe estar disponible tanto para conexiones IPv4 específicas en 192.168.0.12 (La IP de red asignada al hsot) como para cualquier conexión IPv6.
 ![alt text](image-5.png)
+Indicamos que el servicio debe estar disponible tanto para conexiones IPv4 específicas en 192.168.0.12 (La IP de red asignada al hsot) como para cualquier conexión IPv6.
+
 
 ### 1.5. Configuración de Autenticación
+
 Configurar correctamente el archivo `10-auth.conf` permite definir la forma en la que Dovecot manejará las solicitudes de autenticación de los usuarios.
 
    ```bash
    sudo nano /etc/dovecot/conf.d/10-auth.conf
    ```
+![alt text](image-6.png)
 En este archivo, ajustamos las directivas de autenticación:
 - `disable_plaintext_auth = no`: Esta directiva configura Dovecot para permitir la autenticación de usuarios mediante credenciales enviadas en texto plano sobre la red. Establecer este valor en "no" significa que Dovecot aceptará contraseñas sin cifrar durante el proceso de autenticación.
 - `auth_mechanisms = plain login`:  Esta configuración especifica los mecanismos de autenticación que Dovecot soportará para la verificación de las credenciales de los usuarios. Los valores "plain" y "login" se refieren a dos métodos básicos de autenticación:
 
     - `Plain`: Este mecanismo permite que las credenciales se transmitan al servidor de manera sencilla (sin cifrado por parte del mecanismo de autenticación, aunque pueden estar protegidas por una capa de seguridad como SSL/TLS).
     - `Login`: Similar al mecanismo "plain", pero tradicionalmente utilizado por clientes que requieren una secuencia de comandos de autenticación ligeramente diferente.
-
-![alt text](image-6.png)
 
 ### 1.6. Configuración del Directorio del Buzón
 
@@ -107,13 +144,33 @@ Dovecot utiliza el archivo `/etc/dovecot/conf.d/10-mail.conf` para configurar el
 ``` bash
 mail_location = maildir:~/Maildir 
 ```
+![alt text](image-7.png)
 La configuración `mail_location = maildir:~/Maildir` en Dovecot especifica el formato y la ubicación del almacenamiento de los correos electrónicos de los usuarios en el servidor.
 
 - **Formato `Maildir`**: Este valor indica que Dovecot utilizará el formato `Maildir` para almacenar los correos electrónicos. `Maildir` es un formato de almacenamiento de correo electrónico que mantiene cada mensaje en un archivo único dentro de una estructura de directorios específica. 
 
 - **Ubicación `~/Maildir`**: La ruta `~/Maildir` especifica que cada usuario tendrá su directorio `Maildir` dentro de su directorio home (`~`).
 
-![alt text](image-7.png)
+
+### 1.7. Activación de firewalls
+
+![alt text](image-23.png)
+En el sistema Debian, se utilizaron comandos para configurar el firewall con UFW (Uncomplicated Firewall) para permitir el tráfico en los puertos utilizados por los servicios de correo electrónico. Los comandos ejecutados y las acciones realizadas fueron:
+
+1. `sudo ufw allow smtp`: Este comando configuró UFW para permitir el tráfico en el puerto 25, utilizado por el protocolo SMTP. UFW agregó reglas para IPv4 e IPv6.
+
+2. `sudo ufw allow imap`: Se permitió el tráfico en el puerto 143, estándar para conexiones IMAP sin cifrado. Nuevamente, UFW añadió reglas para IPv4 e IPv6.
+
+3. `sudo ufw allow pop3`: Se habilitó el puerto 110, usado por el protocolo POP3 sin cifrado, con reglas para ambas versiones de IP.
+
+Finalmente, se reiniciaron los servicios de correo electrónico para asegurarse de que las nuevas reglas de firewall surtieran efecto:
+
+- `systemctl restart postfix`: Se reinició el servicio Postfix para aplicar cualquier cambio en la configuración o en el entorno de red.
+
+- `systemctl restart dovecot`: Se reinició Dovecot por las mismas razones.
+
+Estas acciones aseguraron que los servicios de correo electrónico puedan comunicarse a través del firewall y que estén funcionando con la configuración actualizada del sistema.
+
 
 # 2. Establecer un Nombre de Dominio Local
 Para configurar un entorno de prueba con el servidor de correo, asignamos un nombre de dominio local a la dirección IP del servidor. Procedimos a mapear un nombre de dominio a nuestra dirección IP en el archivo `/etc/hosts` del servidor.
@@ -127,6 +184,7 @@ Este paso garantiza que `midominio.test` se resuelva a la dirección IP correcta
 
 # 3. Postfix: Instalación y configuración
 Postfix es un agente de transferencia de correo (MTA) que maneja el envío y la recepción de correos electrónicos en tu servidor. Funciona en conjunto con Dovecot, un servidor IMAP/POP3 que permite a los usuarios acceder a sus correos. Mientras Postfix se encarga de la comunicación con otros servidores de correo en Internet, Dovecot proporciona el acceso a los mensajes almacenados a los clientes de correo como Evolution. Esta combinación permite implementar un servidor de correo electrónico completo, capaz de enviar, recibir y almacenar correos, así como de ofrecer acceso seguro a los usuarios finales a través de protocolos estándares.
+
 ### 3.1. Instalación
 
 Ejecutamos el siguiente comando para la instalación de postfix
@@ -155,9 +213,8 @@ Elegimos "Internet site" para configurar Postfix porque necesitamos un servidor 
 
 Durante la configuración de Postfix, definimos el nombre de dominio del sistema que Postfix utilizará para calificar todas las direcciones de correo electrónico que no tienen un dominio especificado. En el campo "System mail name" de la interfaz de configuración de Postfix, introdujimos `midominio.test` como el dominio de correo electrónico completamente calificado (FQDN) para el servidor. Así, si un usuario del sistema envía un correo sin especificar un dominio, Postfix automáticamente añadirá `@midominio.test` a la dirección de correo electrónico. 
 
-
-
 ### 3.2. Configuración de Postfix
+
 ![alt text](postfix.png)
 En el proceso de configuración se efectuaron los siguientes ajustes detallados en el archivo de configuración `/etc/postfix/main.cf`:
 
@@ -174,7 +231,7 @@ En el proceso de configuración se efectuaron los siguientes ajustes detallados 
 3. Configuración de Almacenamiento de Correo:
    - `home_mailbox = Maildir/`: Se ha especificado el formato y la ubicación del almacenamiento del correo electrónico en formato 'Maildir', que separa cada correo en un archivo único dentro de un directorio específico para cada usuario.
 
-## 3.3. Configuración de Dovecot para Integrarse con Postfix
+### 3.3. Configuración de Dovecot para Integrarse con Postfix
 ![alt text](image-12.png) 
 ![alt text](image-13.png)  
 
@@ -194,7 +251,7 @@ Se realizó una configuración similar en la sección `service lmtp`, que es res
      - `mode = 0600`: Establece que solo el usuario `postfix` (y ninguna otra cuenta de usuario o grupo) tiene permisos para acceder a este socket.
      - `user = postfix` y `group = postfix`: Asegura que el servicio LMTP de Dovecot se ejecute con las credenciales necesarias para interactuar con Postfix.
 
-# 4. Evolution: Instalación y COnfiguración
+# 4. Evolution: Instalación y Configuración
 ### 4.1. Instalación del Cliente de Correo Evolution:
 Evolution es un cliente de correo integral que proporciona funcionalidades de correo electrónico, calendario y gestión de contactos. Para instalar Evolution en un sistema operativo basado en Debian/Ubuntu, se utilizó el siguiente comando:
 
@@ -202,14 +259,13 @@ Evolution es un cliente de correo integral que proporciona funcionalidades de co
 sudo apt-get install evolution
 ```
 
-
 ![alt text](image-14.png)
 
 ### 4.2. Configuración de Cuentas de Correo en Evolution:**
 
 Tras la instalación, se procedió a configurar las cuentas de correo electrónico utilizando los protocolos IMAP y POP3 proporcionados por el servidor de correo Dovecot.
 
-### 4.2.1. Configuración de identidad del usuario
+#### 4.2.1. Configuración de identidad del usuario
 ![alt text](image-15.png)
 
 Se introdujeron el nombre completo y la dirección de correo electrónico asociada con la cuenta del usuario en el servidor de correo configurado. Específicamente:
@@ -219,7 +275,7 @@ Se introdujeron el nombre completo y la dirección de correo electrónico asocia
 
 La opción “Look up mail server details based on the entered e-mail address” se activó, lo cual indica que Evolution intentará buscar automáticamente los detalles del servidor de correo basados en la dirección de correo proporcionada, simplificando el proceso de configuración posterior de los servidores entrante y saliente.
 
-### 4.2.2. Configuración del servidor para recibir correos electrónicos
+#### 4.2.2. Configuración del servidor para recibir correos electrónicos
 ![alt text](image-16.png)
 
 Configuramos el servidor para recibir correos electrónicos utilizando el protocolo IMAP. Se estableció la dirección del servidor de correo electrónico Dovecot y las credenciales del usuario para el acceso IMAP, así como los parámetros de seguridad correspondientes:
@@ -237,17 +293,17 @@ Además de la configuración IMAP, Evolution también puede ser configurado para
 
 La configuración actual permite a Evolution comunicarse con el servidor de correo Dovecot para recibir correos. Para un entorno de producción.
 
-### 4.2.3. Recepción de correo en Evolution 
+#### 4.2.3. Recepción de correo en Evolution 
 ![alt text](image-17.png)
 
 La configuración de recepción de correo en Evolution se dejó con los valores predeterminados, donde verifica automáticamente los nuevos mensajes cada 60 minutos y aplica filtros a los mensajes que llegan a la bandeja de entrada. Esta configuración es adecuada para un uso estándar, manteniendo un equilibrio entre la actualización frecuente y la eficiencia del servidor. Las notificaciones de cambio del servidor están activadas, permitiendo actualizaciones en tiempo real si el servidor las soporta. Las opciones de filtrado y sincronización avanzadas se pueden personalizar según las necesidades específicas del usuario.
 
-### 4.2.4. Envío de correo
+#### 4.2.4. Envío de correo
 ![alt text](image-18.png)
 
 En la configuración de envío de correo de Evolution, hemos establecido `midominio.test` como el servidor SMTP y configurado el puerto `25`, que es estándar para conexiones SMTP no seguras. Hemos marcado la opción que indica que el servidor requiere autenticación y seleccionado "No encryption" para el método de seguridad, lo cual concuerda con el entorno de prueba sin conexiones cifradas. Se ha mantenido "PLAIN" como tipo de autenticación y confirmado el nombre de usuario `jeloska`. 
 
-## Summary
+#### Summary
 ![alt text](image-19.png)
 
 
@@ -269,9 +325,12 @@ En la configuración de envío de correo de Evolution, hemos establecido `midomi
   - **Nombre de Usuario**: `jeloska`.
   - **Seguridad**: Ninguna, acorde con la configuración de Postfix para aceptar conexiones sin cifrado.
 
----
 
-# PRUEBAS
+
+
+
+
+# PRUEBAS KASS MODIFICA
 ## Pruebas de Funcionamiento de Servidores SMTP y POP3
 
 ![alt text](image-20.png)
@@ -364,26 +423,6 @@ Se realizó una prueba de recepción de correo electrónico a través de una con
 
 Esta prueba de Telnet al servidor POP3 confirmó la correcta recepción de mensajes en el servidor de correo configurado y la capacidad de recuperar y leer mensajes desde la línea de comandos, lo que es fundamental para la verificación del sistema de correo electrónico en un entorno de pruebas o desarrollo.
 
-## Activación de firewalls
-
-![alt text](image-23.png)
-En el sistema Debian, se utilizaron comandos para configurar el firewall con UFW (Uncomplicated Firewall) para permitir el tráfico en los puertos utilizados por los servicios de correo electrónico. Los comandos ejecutados y las acciones realizadas fueron:
-
-1. `sudo ufw allow smtp`: Este comando configuró UFW para permitir el tráfico en el puerto 25, utilizado por el protocolo SMTP. UFW agregó reglas para IPv4 e IPv6.
-
-2. `sudo ufw allow imap`: Se permitió el tráfico en el puerto 143, estándar para conexiones IMAP sin cifrado. Nuevamente, UFW añadió reglas para IPv4 e IPv6.
-
-3. `sudo ufw allow pop3`: Se habilitó el puerto 110, usado por el protocolo POP3 sin cifrado, con reglas para ambas versiones de IP.
-
-Al intentar nuevamente permitir el tráfico en el puerto SMTP con `ufw allow smtp`, el sistema respondió que la regla ya existía, por lo que no se hicieron cambios adicionales.
-
-Finalmente, se reiniciaron los servicios de correo electrónico para asegurarse de que las nuevas reglas de firewall surtieran efecto:
-
-- `systemctl restart postfix`: Se reinició el servicio Postfix para aplicar cualquier cambio en la configuración o en el entorno de red.
-
-- `systemctl restart dovecot`: Se reinició Dovecot por las mismas razones.
-
-Estas acciones aseguraron que los servicios de correo electrónico puedan comunicarse a través del firewall y que estén funcionando con la configuración actualizada del sistema.
 
 
 
@@ -560,3 +599,131 @@ Para probar la recepción y envío de correos utilizando el protocolo IMAP4 sin 
 Recuerda que estas pruebas son para un entorno de desarrollo o pruebas. En un entorno de producción, deberías usar un método más seguro para enviar credenciales, como SSL/TLS, junto con herramientas adecuadas que soporten estas funciones de seguridad.
 
 ---
+Si recibes el mensaje "Unable to locate package squirrelmail" al intentar instalar SquirrelMail con `apt`, significa que el paquete de SquirrelMail no está disponible en los repositorios de paquetes estándar de tu distribución Linux. Esto puede ocurrir por varias razones, incluyendo cambios en los repositorios o la necesidad de agregar repositorios adicionales. 
+
+SquirrelMail ha estado en transición y, dependiendo de tu versión de Linux, es posible que no esté disponible directamente a través de `apt`. Sin embargo, puedes instalar SquirrelMail manualmente descargando el software desde su sitio web oficial. Aquí te muestro cómo hacerlo:
+# Extra Mile: 5. Agente de usuario web SquirelMail: Instalación y Configuración
+
+Se llevó a cabo la instalación y configuración de SquirrelMail, un cliente de correo web basado en PHP. A continuación, se describe el proceso seguido:
+
+### 5.1. Descarga de SquirrelMail
+
+Se accedió al sitio web oficial de SquirrelMail para localizar la última versión disponible. A través de la sección de descargas del sitio, se obtuvo el enlace del paquete de instalación.
+![alt text](image-26.png)
+
+### 5.2. Descompresión del Archivo de SquirrelMail
+![alt text](image-26.png)
+
+Usando el comando `tar`, se extrajo el contenido del archivo `squirrelmail.tar.gz` en el directorio `/var/www/html`, que es la raíz del servidor web Apache. La sintaxis exacta del comando fue:
+
+```bash
+sudo tar -zxvf squirrelmail.tar.gz -C /var/www/html/
+```
+
+La opción `-C` indica el directorio de destino para los archivos descomprimidos, y las opciones `-zxvf` son para descomprimir, listar los archivos procesados, y hacerlo de manera detallada.
+
+### 5.3. Configuración de SquirrelMail
+![alt text](image-27.png)
+
+Se inició el script de configuración integrado de SquirrelMail con el siguiente conjunto de comandos:
+
+```bash
+cd /var/www/html/squirrelmail/config
+sudo ./conf.pl
+```
+
+Dentro del script de configuración, se realizaron las siguientes acciones:
+
+- **Configuración del Dominio (D)**: Se ingresó en la sección correspondiente para establecer el nombre de la organización y detalles como el logo y el dominio.
+
+- **Configuración del Servidor (2)**: En el menú de configuración del servidor, se realizaron ajustes como:
+  
+  - Definición del hostname del servidor IMAP, configurándolo para usar `localhost` o una dirección IP específica si el servidor IMAP reside en una máquina diferente.
+  
+  - Selección del tipo de servidor IMAP adecuado para el sistema, que en este caso fue Dovecot.
+
+### 5.4. Configuración del Servidor Web
+![alt text](image-28.png)
+
+Se estableció un host virtual para SquirrelMail mediante la creación de un nuevo archivo de configuración de sitio en `/etc/apache2/sites-available/`. Posteriormente, se habilitó el sitio con `a2ensite` y se reinició el servicio Apache para aplicar los cambios.
+
+### 5.5. Finalización de la Instalación
+
+
+Para garantizar que los cambios surtieran efecto, se reinició el servidor web Apache utilizando:
+
+```bash
+sudo systemctl restart apache2
+```
+
+Después del reinicio, se verificó el acceso a SquirrelMail a través de un navegador web apuntando a la URL `http://tu_dominio_o_IP/squirrelmail`.
+
+### 5.6. Creación de Directorios
+
+Se crearon directorios necesarios para los datos de SquirrelMail con los siguientes comandos:
+
+```bash
+sudo mkdir -p /var/local/squirrelmail/data/
+sudo chown -R www-data:www-data /var/local/squirrelmail/data/
+sudo chmod 770 /var/local/squirrelmail/data/
+```
+
+![alt text](<Imagen de WhatsApp 2024-04-10 a las 06.00.41_31889787.jpg>)
+
+# E. Descripción de la solución
+**e. Descripción de la Solución**
+
+La solución implementada constituye un sistema de correo electrónico integral que combina un servidor robusto, con capacidades de acceso web y cliente de escritorio, facilitando así una interacción versátil con el correo electrónico tanto para administradores como para usuarios finales.
+
+**Componentes del Servidor:**
+
+1. **Postfix (MTA)**: Actúa como el agente de transferencia de correo, encargado de la ruta y entrega de correos entre el servidor y el internet. Está configurado para aceptar y retransmitir correos utilizando el protocolo SMTP.
+
+2. **Dovecot (MDA/IMAP, POP3 Server)**: Funciona como agente de entrega de correo y servidor de protocolos IMAP y POP3. Dovecot maneja la almacenamiento y la recuperación de correos electrónicos de los usuarios, permitiendo operaciones como leer, borrar y mover mensajes entre carpetas.
+
+3. **SquirrelMail (WebMail)**: Provee una interfaz de usuario web para acceder al correo electrónico a través de cualquier navegador estándar. Se integra con Dovecot para el acceso a correos y con Postfix para el envío de correos desde la interfaz web.
+
+4. **UFW (Firewall)**: Configurado para proteger el servidor de accesos no autorizados, permitiendo solo conexiones a puertos específicos para SMTP, IMAP y POP3, tanto en sus versiones estándar como seguras.
+
+**Componentes del Cliente:**
+
+1. **Evolution (Cliente de Correo)**: Un cliente de correo electrónico de escritorio configurado para conectar con el servidor a través de IMAP o POP3 para la recepción de correos y SMTP para el envío. Evolution se integra perfectamente con el sistema de correo electrónico proporcionando capacidades de gestión de correo, calendario y tareas.
+
+**Flujo de Correo Electrónico:**
+
+El flujo del correo electrónico dentro de esta solución es el siguiente:
+
+1. **Recepción:**
+   - Los correos entrantes son recibidos por Postfix a través de SMTP.
+   - Postfix entrega estos correos a Dovecot para almacenamiento y gestión.
+
+2. **Acceso y Gestión:**
+   - Los usuarios acceden a sus correos utilizando Evolution configurado para IMAP/POP3 o a través de la interfaz web SquirrelMail.
+   - Con Dovecot actuando como backend, los usuarios pueden leer y organizar sus correos electrónicos.
+
+3. **Envío:**
+   - Los correos enviados desde Evolution o SquirrelMail son procesados por Postfix utilizando SMTP.
+   - Postfix se comunica con los servidores de correo externos para la entrega de correos.
+
+**Configuración de Seguridad:**
+   
+- Se implementaron configuraciones de seguridad en Postfix y Dovecot para la aceptación y transmisión de correos.
+- UFW está configurado para permitir tráfico solo en los puertos de correo designados, y para conexiones seguras se implementarían reglas adicionales para los puertos de IMAPS y POPS.
+![alt text](image-29.png)
+
+# G. Conclusiones
+
+La implementación de la infraestructura de correo electrónico con Dovecot y Postfix en un entorno Linux ha resultado en un sistema capaz de manejar protocolos de correo estándar y seguros de manera efectiva. La integración de SquirrelMail ofrece una solución de acceso web que complementa al cliente de escritorio Evolution, proporcionando a los usuarios finales flexibilidad en la gestión de sus correos electrónicos.
+
+El uso de UFW como firewall asegura que el servidor de correo solo es accesible a través de los puertos designados, lo cual es fundamental para mantener la integridad y seguridad del sistema. Además, la capacidad de configurar y validar conexiones seguras IMAPS y POPS destaca la preparación del sistema para adaptarse a un entorno de producción, donde la seguridad es una preocupación primordial.
+
+Este informe también resalta la importancia de seguir prácticas de configuración detalladas y precisas para asegurar la cohesión entre los distintos componentes del sistema de correo electrónico. La verificación de la funcionalidad del sistema a través de pruebas directas con herramientas de línea de comandos valida el diseño e implementación del sistema propuesto.
+
+# H. Bibliografía
+
+- Dovecot. (n.d.). *Dovecot documentation*. Recuperado de https://doc.dovecot.org/
+- Postfix. (n.d.). *Postfix documentation*. Recuperado de http://www.postfix.org/documentation.html
+- SquirrelMail Project. (n.d.). *SquirrelMail documentation*. Recuperado de http://squirrelmail.org/docs/
+- The Evolution Team. (n.d.). *Evolution documentation*. Recuperado de https://wiki.gnome.org/Apps/Evolution/Documentation
+- UFW Project. (n.d.). *UFW - Uncomplicated Firewall*. Recuperado de https://help.ubuntu.com/community/UFW
+- PlantUML. (n.d.). *PlantUML documentation*. Recuperado de https://plantuml.com/
