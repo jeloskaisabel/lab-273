@@ -671,7 +671,6 @@ sudo chmod 770 /var/local/squirrelmail/data/
 ![alt text](<Imagen de WhatsApp 2024-04-10 a las 06.00.41_31889787.jpg>)
 
 # E. Descripción de la solución
-**e. Descripción de la Solución**
 
 La solución implementada constituye un sistema de correo electrónico integral que combina un servidor robusto, con capacidades de acceso web y cliente de escritorio, facilitando así una interacción versátil con el correo electrónico tanto para administradores como para usuarios finales.
 
